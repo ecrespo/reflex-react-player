@@ -47,3 +47,28 @@ def test_set_volume():
 
 def test_set_playback_rate():
     assert "p.playbackRate = 1.5" in js_of(controls.set_playback_rate("p", 1.5))
+
+
+import reflex as rx
+
+
+class _S(rx.State):
+    seconds: float = 0.0
+
+    @rx.event
+    def set_seconds(self, v: float):
+        self.seconds = v
+
+
+def test_get_current_time_reads_and_has_callback():
+    spec = controls.get_current_time("p", _S.set_seconds)
+    js = js_of(spec)
+    assert "?.currentTime || 0" in js
+    # second call_script arg is the callback; must not be the null literal.
+    assert str(spec.args[1][1]) != "null"
+
+
+def test_get_duration_reads_and_has_callback():
+    spec = controls.get_duration("p", _S.set_seconds)
+    assert "?.duration || 0" in js_of(spec)
+    assert str(spec.args[1][1]) != "null"

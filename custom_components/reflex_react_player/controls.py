@@ -69,3 +69,20 @@ def set_playback_rate(player_id: str, rate: float) -> EventSpec:
     return rx.call_script(
         f"{{ const p = {_ref(player_id)}; if (p) p.playbackRate = {rate}; }}"
     )
+
+
+def get_current_time(player_id: str, callback) -> EventSpec:
+    """Read ``currentTime`` and pass it to a backend event handler.
+
+    ``callback`` is a state setter / event handler accepting a float.
+    """
+    return rx.call_script(
+        f"({_ref(player_id)}?.currentTime || 0)", callback=callback
+    )
+
+
+def get_duration(player_id: str, callback) -> EventSpec:
+    """Read ``duration`` and pass it to a backend event handler."""
+    return rx.call_script(
+        f"({_ref(player_id)}?.duration || 0)", callback=callback
+    )
