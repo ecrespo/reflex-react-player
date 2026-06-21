@@ -23,3 +23,19 @@ def test_pause_calls_element_pause():
 
 def test_request_fullscreen():
     assert "?.requestFullscreen?.()" in js_of(controls.request_fullscreen("p"))
+
+
+def test_seek_to_sets_current_time():
+    js = js_of(controls.seek_to("p", 12))
+    assert "p.currentTime = 12" in js
+
+
+def test_seek_relative_adds_delta():
+    js = js_of(controls.seek_relative("p", 10))
+    assert "(p.currentTime || 0) + (10)" in js
+
+
+def test_seek_fraction_scales_duration():
+    js = js_of(controls.seek_fraction("p", 0.5))
+    assert "(0.5) * p.duration" in js
+    assert "p.duration" in js  # guarded: only when duration is known

@@ -32,3 +32,26 @@ def pause(player_id: str) -> EventSpec:
 def request_fullscreen(player_id: str) -> EventSpec:
     """Request native fullscreen for the player element."""
     return rx.call_script(f"{_ref(player_id)}?.requestFullscreen?.()")
+
+
+def seek_to(player_id: str, seconds: float) -> EventSpec:
+    """Seek to an absolute time in seconds."""
+    return rx.call_script(
+        f"{{ const p = {_ref(player_id)}; if (p) p.currentTime = {seconds}; }}"
+    )
+
+
+def seek_relative(player_id: str, delta_seconds: float) -> EventSpec:
+    """Seek forward (positive) or backward (negative) by ``delta_seconds``."""
+    return rx.call_script(
+        f"{{ const p = {_ref(player_id)}; if (p) p.currentTime = "
+        f"(p.currentTime || 0) + ({delta_seconds}); }}"
+    )
+
+
+def seek_fraction(player_id: str, fraction: float) -> EventSpec:
+    """Seek to a 0..1 fraction of the total duration (slider scrubbing)."""
+    return rx.call_script(
+        f"{{ const p = {_ref(player_id)}; if (p && p.duration) "
+        f"p.currentTime = ({fraction}) * p.duration; }}"
+    )
