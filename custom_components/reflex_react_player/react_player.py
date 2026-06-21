@@ -107,6 +107,26 @@ class ReactPlayer(NoSSRComponent):
     # --- per-player configuration -----------------------------------------
     config: rx.Var[dict[str, Any]]
 
+    # --- event triggers ---------------------------------------------------
+    on_ready: rx.EventHandler[_empty_spec]
+    on_start: rx.EventHandler[_empty_spec]
+    on_play: rx.EventHandler[_media_state_spec]
+    on_pause: rx.EventHandler[_media_state_spec]
+    on_ended: rx.EventHandler[_media_state_spec]
+    on_error: rx.EventHandler[_error_spec]
+    on_duration_change: rx.EventHandler[_duration_spec]   # -> onDurationChange
+    on_progress: rx.EventHandler[_media_state_spec]
+    on_time_update: rx.EventHandler[_media_state_spec]    # -> onTimeUpdate
+    on_seeking: rx.EventHandler[_media_state_spec]
+    on_seeked: rx.EventHandler[_media_state_spec]
+    on_waiting: rx.EventHandler[_media_state_spec]
+    on_playing: rx.EventHandler[_media_state_spec]
+    on_rate_change: rx.EventHandler[_media_state_spec]    # -> onRateChange
+    on_volume_change: rx.EventHandler[_media_state_spec]  # -> onVolumeChange
+    on_enter_picture_in_picture: rx.EventHandler[_empty_spec]
+    on_leave_picture_in_picture: rx.EventHandler[_empty_spec]
+    on_click_preview: rx.EventHandler[_empty_spec]        # light-mode preview
+
     # snake_case -> camelCase covers everything except names that need a hint.
     _rename_props: dict[str, str] = {
         "o_embed_url": "oEmbedUrl",
