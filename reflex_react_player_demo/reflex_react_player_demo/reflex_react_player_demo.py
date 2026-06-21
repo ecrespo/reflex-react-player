@@ -285,13 +285,13 @@ def progress_bars() -> rx.Component:
         ),
         rx.hstack(
             rx.text("Played", size="1", width="60px"),
-            rx.progress(value=PlayerState.played_pct, max=100, width="100%", color_scheme="grass"),
+            rx.progress(value=PlayerState.played_pct.to(int), max=100, width="100%", color_scheme="grass"),
             width="100%",
             align="center",
         ),
         rx.hstack(
             rx.text("Loaded", size="1", width="60px"),
-            rx.progress(value=PlayerState.loaded_pct, max=100, width="100%", color_scheme="gray"),
+            rx.progress(value=PlayerState.loaded_pct.to(int), max=100, width="100%", color_scheme="gray"),
             width="100%",
             align="center",
         ),
