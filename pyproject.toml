@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "reflex-react-player"
+version = "0.1.0"
+description = "A Reflex custom component wrapping react-player v3 (YouTube, Vimeo, Wistia, HLS, DASH, Mux, Spotify, Twitch, TikTok and file/audio playback)."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Ernesto Crespo", email = "ecrespo@gmail.com" }]
+keywords = ["reflex", "react-player", "video", "audio", "player", "youtube", "hls", "component"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: AsyncIO",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = ["reflex>=0.8.0"]
+
+[project.urls]
+Homepage = "https://github.com/ecrespo/reflex-react-player"
+Repository = "https://github.com/ecrespo/reflex-react-player"
+Issues = "https://github.com/ecrespo/reflex-react-player/issues"
+"react-player" = "https://github.com/cookpete/react-player"
+
+[project.optional-dependencies]
+dev = ["build", "twine", "pytest"]
+
+[tool.setuptools.packages.find]
+where = ["custom_components"]
+
+[tool.setuptools.package-data]
+reflex_react_player = ["*.pyi"]
