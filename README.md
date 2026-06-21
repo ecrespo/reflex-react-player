@@ -39,7 +39,7 @@ cd reflex-react-player
 pip install -e .
 ```
 
-Requires **Reflex ≥ 0.8.0** and **Python ≥ 3.9**. The npm dependency
+Requires **Reflex ≥ 0.8.0** and **Python ≥ 3.10**. The npm dependency
 (`react-player@3.4.0`) is added to your Reflex project automatically on build.
 
 ## Quickstart

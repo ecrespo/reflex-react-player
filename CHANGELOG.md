@@ -10,7 +10,8 @@ All notable changes to this project are documented here. The format is based on
 - Initial release: `ReactPlayer` Reflex component wrapping `react-player@3.4.0`
   (`NoSSRComponent`, default export).
 - Full prop surface: `src`, `playing`, `loop`, `controls`, `light`, `volume`,
-  `muted`, `playback_rate`, `pip`, `plays_inline`, `width`, `height`, `style`,
+  `muted`, `playback_rate`, `pip`, `plays_inline`, `width`, `height` (plus
+  Reflex's built-in `style`, not redeclared — see ADR-7),
   native passthrough attrs, light/preview props, and per-player `config`.
 - Event triggers delivering serializable media-state dicts: `on_play`,
   `on_pause`, `on_ended`, `on_progress`, `on_time_update`, `on_duration_change`,
@@ -21,6 +22,13 @@ All notable changes to this project are documented here. The format is based on
 - Demo app reproducing the official react-player examples.
 - Spec-Driven Design documents under `docs/sdd/`.
 - Apache-2.0 license, packaging (`pyproject.toml`), smoke tests.
+
+### Packaging (publish-readiness)
+- Aligned `pyproject.toml` with the official `reflex component init` template:
+  added the required `reflex-custom-components` keyword (Reflex gallery / PyPI
+  discovery), set `requires-python >=3.10` (Reflex 0.9 dropped 3.9), and added
+  `wheel` to the build-system requires.
+- Build with `reflex component build` (or `uv build`); publish with `uv publish`.
 
 ### Known limitations
 - v3 does not yet support DailyMotion, SoundCloud, Streamable, Facebook,

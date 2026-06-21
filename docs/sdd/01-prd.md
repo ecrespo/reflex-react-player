@@ -81,7 +81,7 @@ Priority: **MUST** (v0.1), **SHOULD** (near-term), **MAY** (future).
 | NFR-1 | MUST | Pin `react-player@3.x` for reproducible builds. |
 | NFR-2 | MUST | Component is `NoSSRComponent` (client-only). |
 | NFR-3 | MUST | `is_default = True` (react-player default export). |
-| NFR-4 | MUST | Works with Reflex ≥ 0.8.0 and Python ≥ 3.9. |
+| NFR-4 | MUST | Works with Reflex ≥ 0.8.0 and Python ≥ 3.10 (Reflex 0.9 dropped 3.9; the official custom-component template pins `requires-python >=3.10`). |
 | NFR-5 | SHOULD | Smoke tests for wiring, prop rendering, event triggers. |
 | NFR-6 | SHOULD | Apache-2.0 license (matches Reflex ecosystem). |
 

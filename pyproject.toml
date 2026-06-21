@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,10 +7,12 @@ name = "reflex-react-player"
 version = "0.1.0"
 description = "A Reflex custom component wrapping react-player v3 (YouTube, Vimeo, Wistia, HLS, DASH, Mux, Spotify, Twitch, TikTok and file/audio playback)."
 readme = "README.md"
-requires-python = ">=3.9"
+# Reflex 0.9 dropped Python 3.9; the official custom-component template pins >=3.10.
+requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
 authors = [{ name = "Ernesto Crespo", email = "ecrespo@gmail.com" }]
-keywords = ["reflex", "react-player", "video", "audio", "player", "youtube", "hls", "component"]
+# "reflex-custom-components" is required for Reflex gallery / PyPI discovery.
+keywords = ["reflex", "reflex-custom-components", "react-player", "video", "audio", "player", "youtube", "hls", "component"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Framework :: AsyncIO",
