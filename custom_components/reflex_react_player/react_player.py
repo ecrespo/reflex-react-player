@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+from typing import Any, Union
+
+import reflex as rx
 from reflex.components.component import NoSSRComponent
 
 # Pinned npm version for reproducible builds (ADR-6). Bump deliberately.
@@ -15,6 +18,43 @@ class ReactPlayer(NoSSRComponent):
     tag = "ReactPlayer"
     alias = "ReactPlayer"
     is_default = True  # react-player is the package's default export.
+
+    # --- core playback props (snake_case -> camelCase automatically) ------
+    src: rx.Var[str]
+    playing: rx.Var[bool]
+    loop: rx.Var[bool]
+    controls: rx.Var[bool]
+    light: rx.Var[Union[bool, str]]
+    volume: rx.Var[float]
+    muted: rx.Var[bool]
+    playback_rate: rx.Var[float]          # -> playbackRate
+    pip: rx.Var[bool]
+    plays_inline: rx.Var[bool]            # -> playsInline
+
+    # --- layout (NOTE: no `style` prop — it is built in) ------------------
+    width: rx.Var[Union[str, int]]
+    height: rx.Var[Union[str, int]]
+
+    # --- native passthrough attributes ------------------------------------
+    auto_play: rx.Var[bool]               # -> autoPlay
+    preload: rx.Var[str]
+    cross_origin: rx.Var[str]             # -> crossOrigin
+    poster: rx.Var[str]
+    disable_remote_playback: rx.Var[bool]        # -> disableRemotePlayback
+    disable_picture_in_picture: rx.Var[bool]     # -> disablePictureInPicture
+
+    # --- light / preview-mode props ---------------------------------------
+    preview_tab_index: rx.Var[int]        # -> previewTabIndex
+    preview_aria_label: rx.Var[str]       # -> previewAriaLabel
+    o_embed_url: rx.Var[str]              # -> oEmbedUrl (see _rename_props)
+
+    # --- per-player configuration -----------------------------------------
+    config: rx.Var[dict[str, Any]]
+
+    # snake_case -> camelCase covers everything except names that need a hint.
+    _rename_props: dict[str, str] = {
+        "o_embed_url": "oEmbedUrl",
+    }
 
 
 react_player = ReactPlayer.create
