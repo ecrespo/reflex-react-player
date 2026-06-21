@@ -88,6 +88,14 @@ only for names that don't camelCase cleanly (`o_embed_url` → `oEmbedUrl`).
 mismatches cause "Invalid Element Type" / loadable errors.
 **Decision:** Pin an exact version in `library`. Bumps are deliberate and tested.
 
+### ADR-7 — Do not declare a `style` prop
+**Context:** `style` is a built-in field on every Reflex component. Declaring
+`style: rx.Var[dict]` on the subclass overrides it with a `None` default and
+breaks `Component._post_init` (`TypeError: 'NoneType' object is not a mapping`)
+on Reflex ≥ 0.9. **Decision:** Layout uses `width`/`height` props plus the
+built-in `style`; the component declares no `style` prop. Covered by
+`tests/test_props.py::test_no_style_prop_declared`.
+
 ## 4. Module layout
 
 ```

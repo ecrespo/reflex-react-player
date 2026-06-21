@@ -54,7 +54,8 @@ Granular, trackable work items mapped to phases (`04-plan.md`) and requirements
 - [ ] T5.6 Type stubs `.pyi` for editor autocomplete. (enhancement)
 
 ## Phase 6 — Verification & publish
-- [x] T6.1 Smoke tests (`tests/test_component.py`). (NFR-5)
+- [x] T6.1 Contract test suite, test-first: wiring, props/camelCase, arg specs,
+      event triggers, controls JS, public API (`tests/test_*.py`). (NFR-5)
 - [ ] T6.2 `python -m build` produces sdist + wheel (run where deps install).
 - [ ] T6.3 `reflex run` demo frontend build smoke (needs Node).
 - [ ] T6.4 Create public GitHub repo, push `main`.

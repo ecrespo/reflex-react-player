@@ -36,3 +36,8 @@ where = ["custom_components"]
 
 [tool.setuptools.package-data]
 reflex_react_player = ["*.pyi"]
+
+[tool.pytest.ini_options]
+pythonpath = ["custom_components"]
+testpaths = ["tests"]
+addopts = "-q"
