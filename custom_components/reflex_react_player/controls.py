@@ -55,3 +55,17 @@ def seek_fraction(player_id: str, fraction: float) -> EventSpec:
         f"{{ const p = {_ref(player_id)}; if (p && p.duration) "
         f"p.currentTime = ({fraction}) * p.duration; }}"
     )
+
+
+def set_volume(player_id: str, volume: float) -> EventSpec:
+    """Set volume (0..1) directly on the element."""
+    return rx.call_script(
+        f"{{ const p = {_ref(player_id)}; if (p) p.volume = {volume}; }}"
+    )
+
+
+def set_playback_rate(player_id: str, rate: float) -> EventSpec:
+    """Set the playback rate directly on the element."""
+    return rx.call_script(
+        f"{{ const p = {_ref(player_id)}; if (p) p.playbackRate = {rate}; }}"
+    )

@@ -39,3 +39,11 @@ def test_seek_fraction_scales_duration():
     js = js_of(controls.seek_fraction("p", 0.5))
     assert "(0.5) * p.duration" in js
     assert "p.duration" in js  # guarded: only when duration is known
+
+
+def test_set_volume():
+    assert "p.volume = 0.5" in js_of(controls.set_volume("p", 0.5))
+
+
+def test_set_playback_rate():
+    assert "p.playbackRate = 1.5" in js_of(controls.set_playback_rate("p", 1.5))
