@@ -1,3 +1,4 @@
+import reflex as rx
 from reflex.event import EventSpec
 
 from reflex_react_player import controls
@@ -47,9 +48,6 @@ def test_set_volume():
 
 def test_set_playback_rate():
     assert "p.playbackRate = 1.5" in js_of(controls.set_playback_rate("p", 1.5))
-
-
-import reflex as rx
 
 
 class _S(rx.State):

@@ -34,7 +34,7 @@ All props are optional. Python `snake_case` maps to react-player `camelCase`.
 | `plays_inline` | `playsInline` | `bool` | `False` | iOS inline playback. |
 | `width` | `width` | `str \| int` | `"320px"` | Player width. |
 | `height` | `height` | `str \| int` | `"180px"` | Player height. |
-| `style` | `style` | `dict` | `{}` | Inline styles (e.g. `aspectRatio`). |
+| `style` | `style` | `dict` | `{}` | Reflex **built-in** — not redeclared as a component prop (see ADR-7 in `02-architecture.md`); still accepted for inline styles (e.g. `aspectRatio`). |
 | `auto_play` | `autoPlay` | `bool` | `False` | Native autoplay. |
 | `preload` | `preload` | `str` | — | Native preload hint. |
 | `cross_origin` | `crossOrigin` | `str` | — | Native crossOrigin. |
@@ -155,7 +155,8 @@ Facebook, Mixcloud, Kaltura. Stay on react-player v2 if you need these.
 
 ## 7. Contract tests
 
-`tests/test_component.py` asserts: library/tag/default wiring; that
-`playback_rate`/`plays_inline` render as camelCase; that the documented event
-triggers exist; that control helpers construct. Any contract change updates this
-file and the tests together.
+The contract tests live in `tests/test_*.py` (`test_wiring.py`, `test_props.py`,
+`test_arg_specs.py`, `test_events.py`, `test_controls.py`, `test_public_api.py`)
+and assert: library/tag/default wiring; that `playback_rate`/`plays_inline`
+render as camelCase; that the documented event triggers exist; that control
+helpers construct. Any contract change updates these files and the spec together.
