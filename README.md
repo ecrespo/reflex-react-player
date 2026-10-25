@@ -39,7 +39,7 @@ cd reflex-react-player
 pip install -e .
 ```
 
-Requires **Reflex ≥ 0.8.0** and **Python ≥ 3.10**. The npm dependency
+Requires **Reflex ≥ 0.10.0** and **Python ≥ 3.11** (tested on 3.11–3.14). The npm dependency
 (`react-player@3.4.0`) is added to your Reflex project automatically on build.
 
 ## Quickstart
@@ -161,9 +161,11 @@ Keys: `html`, `hls`, `dash`, `mux`, `youtube`, `vimeo`, `wistia`, `spotify`,
 cd reflex_react_player_demo
 pip install -e ..          # install the component
 pip install -r requirements.txt
-reflex init                # first time only (creates .web)
-reflex run
+reflex run                 # needs Node.js (CI uses Node 24)
 ```
+
+The demo's Radix theme is configured in `rxconfig.py` through
+`rx.plugins.RadixThemesPlugin` (Reflex ≥ 0.9 deprecates `rx.App(theme=...)`).
 
 Open http://localhost:3000 — the demo includes a provider switcher, transport
 controls, speed buttons, a seek slider, a volume slider, controls/muted/loop/
@@ -194,8 +196,39 @@ stay on react-player v2 if you need them.
 ```bash
 pip install -e ".[dev]"
 pytest -q
-python -m build          # build sdist + wheel
+python -m build          # build sdist + wheel (or: uv build)
 ```
+
+### Type stubs
+
+`react_player.pyi` is committed and shipped in the wheel. Reflex 0.10 removed the
+`reflex component` CLI (`reflex component build` no longer exists), so regenerate
+the stubs after changing props or events with Reflex's stub generator:
+
+```bash
+pip install ruff
+python -m reflex_base.utils.pyi_generator custom_components/reflex_react_player
+```
+
+## Releasing
+
+Releases are published to PyPI by `.github/workflows/publish.yml` using
+[Trusted Publishing](https://docs.pypi.org/trusted-publishers/) (no API token):
+
+1. Bump `version` in `pyproject.toml` and `__version__` in
+   `custom_components/reflex_react_player/__init__.py`; add a `CHANGELOG.md` entry.
+2. Open a PR to `main`; CI (tests on Python 3.11–3.14, build, demo compile on
+   Node 24) must pass. Merge it.
+3. Tag the merge commit on `main` and push the tag:
+
+   ```bash
+   git checkout main && git pull
+   git tag v0.2.0
+   git push origin v0.2.0
+   ```
+
+The workflow checks that the tag matches the package version, runs the tests,
+builds, and uploads to PyPI from the `pypi` environment.
 
 ## License
 
