@@ -51,17 +51,19 @@ Granular, trackable work items mapped to phases (`04-plan.md`) and requirements
 - [x] T5.3 `.gitignore`.
 - [x] T5.4 README (install, quickstart, API tables, limitations).
 - [x] T5.5 CHANGELOG.
-- [ ] T5.6 Type stubs `.pyi` for editor autocomplete. (enhancement)
+- [x] T5.6 Type stubs `.pyi` for editor autocomplete (regenerated with
+      `python -m reflex_base.utils.pyi_generator`; `reflex component` was removed in 0.10).
 
 ## Phase 6 — Verification & publish
 - [x] T6.1 Contract test suite, test-first: wiring, props/camelCase, arg specs,
       event triggers, controls JS, public API (`tests/test_*.py`). (NFR-5)
-- [ ] T6.2 `python -m build` produces sdist + wheel (run where deps install).
-- [ ] T6.3 `reflex run` demo frontend build smoke (needs Node).
-- [ ] T6.4 Create public GitHub repo, push `main`.
-- [ ] T6.5 (Optional) Publish to PyPI via `twine`.
+- [x] T6.2 `python -m build` produces sdist + wheel (checked in CI with `twine check`).
+- [x] T6.3 Demo frontend build smoke: `reflex export --frontend-only` in CI (Node 24).
+- [x] T6.4 Create public GitHub repo, push `main`.
+- [x] T6.5 Publish to PyPI — tag-triggered Trusted Publishing (`publish.yml`).
+- [x] T6.6 Upgrade to Reflex 0.10 / Python ≥ 3.11; workflows on Node 24 (v0.2.0).
 
 ## Backlog / future
 - [ ] B.1 Media Chrome custom-controls skin.
 - [ ] B.2 `<source>`/`<track>` children helper (multi-source + captions).
-- [ ] B.3 CI workflow (lint + tests) on GitHub Actions.
+- [x] B.3 CI workflow (tests + build + demo compile) on GitHub Actions.

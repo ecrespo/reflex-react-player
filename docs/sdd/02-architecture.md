@@ -96,6 +96,17 @@ on Reflex ≥ 0.9. **Decision:** Layout uses `width`/`height` props plus the
 built-in `style`; the component declares no `style` prop. Covered by
 `tests/test_props.py::test_no_style_prop_declared`.
 
+### ADR-8 — Target Reflex 0.10; build and release without `reflex component`
+**Context:** Reflex 0.10 requires Python ≥ 3.11 and removed the
+`reflex component` CLI (`init`/`build`/`publish`/`share`); the official
+component template now builds with standard tooling and publishes from CI.
+**Decision:** Depend on `reflex>=0.10.0`, `requires-python >=3.11`. Keep the
+setuptools layout and the committed `react_player.pyi`, regenerated with
+`python -m reflex_base.utils.pyi_generator`. Build with `python -m build`;
+publish via GitHub Actions Trusted Publishing on `v*` tags (`publish.yml`, which
+verifies tag == `pyproject` version). The demo configures its theme through
+`rx.plugins.RadixThemesPlugin`, and CI compiles it with Node 24.
+
 ## 4. Module layout
 
 ```
@@ -149,5 +160,4 @@ The "media state" dict delivered to most event handlers:
 ## 9. Future enhancements
 
 - Optional Media Chrome skin (custom controls UI).
-- Typed `.pyi` stubs for editor autocomplete.
 - Helper for `<source>`/`<track>` children (multi-source, captions).

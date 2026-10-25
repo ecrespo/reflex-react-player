@@ -9,7 +9,7 @@ Public API::
 from . import controls
 from .react_player import REACT_PLAYER_VERSION, ReactPlayer, react_player
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 __all__ = [
     "ReactPlayer",

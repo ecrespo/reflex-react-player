@@ -394,5 +394,5 @@ def index() -> rx.Component:
     )
 
 
-app = rx.App(theme=rx.theme(appearance="light", accent_color="violet"))
+app = rx.App()
 app.add_page(index, title="reflex-react-player demo")

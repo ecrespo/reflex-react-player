@@ -66,10 +66,10 @@ LICENSE (Apache-2.0), `.gitignore`, README quickstart + API tables, CHANGELOG
 `main`; (optional) publish to PyPI.
 **Done when:**
 - [x] `pytest` passes (component wiring, prop rendering, triggers, helpers).
-- [ ] `reflex run` in the demo builds the frontend with no Invalid-Element-Type
-      error (requires Node; run on a dev machine).
-- [ ] Public GitHub repo created and `main` pushed.
-- [ ] (Optional) `reflex-react-player` published to PyPI.
+- [x] The demo builds the frontend with no Invalid-Element-Type error
+      (`reflex export --frontend-only`, Node 24, in CI).
+- [x] Public GitHub repo created and `main` pushed.
+- [x] `reflex-react-player` published to PyPI (tag `vX.Y.Z` → `publish.yml`).
 
 ## Definition of Done (every PR)
 - Behavioral changes update the relevant SDD doc in the same PR.

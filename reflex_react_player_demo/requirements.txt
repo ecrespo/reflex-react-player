@@ -1,4 +1,4 @@
-reflex>=0.8.0
+reflex>=0.10.0
 # Install the component itself in editable mode from the repo root:
 #   pip install -e ..
 reflex-react-player

@@ -4,6 +4,27 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/) and this project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [0.2.0] — 2026-10-25
+
+### Changed
+- **Requires Reflex ≥ 0.10.0 and Python ≥ 3.11** (Reflex 0.10 dropped 3.10).
+  Tested on Python 3.11, 3.12, 3.13 and 3.14.
+- Regenerated `react_player.pyi` with the Reflex 0.10 stub generator
+  (`python -m reflex_base.utils.pyi_generator`); `reflex component build` was
+  removed in Reflex 0.10.
+- Demo: theme moved from `rx.App(theme=...)` (deprecated) to
+  `rx.plugins.RadixThemesPlugin` in `rxconfig.py`; sitemap plugin disabled
+  explicitly.
+- Build backend requires `setuptools>=78.1.1`; license declared as an SPDX
+  expression (`Apache-2.0`).
+
+### CI / release
+- GitHub Actions upgraded to Node 24 runtimes (`checkout@v7`,
+  `setup-python@v7`, `setup-node@v7`, `upload-artifact@v7`,
+  `download-artifact@v8`); new demo job builds the frontend on Node 24.
+- New `publish.yml`: pushing a `vX.Y.Z` tag tests, builds and publishes to PyPI
+  via Trusted Publishing.
+
 ## [0.1.0] — 2026-06-21
 
 ### Added
